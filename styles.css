@@ -24,7 +24,7 @@
 }
 
 .player-option.selected {
-  background-color: lightblue; /* Korosta valittu pelaaja */
+  background-color: rgb(33, 138, 173); /* Korosta valittu pelaaja */
 }
 
 .head,
