@@ -3,27 +3,27 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "DM Sans", sans-serif;
-  text-decoration: none;
 }
 
-.head,
-.addplayercontent {
-  font-family: "DM Sans", sans-serif;
-  font-weight: 500;
-  color: #edf0f1;
-  text-decoration: none;
-}
-cus option {
-  padding-bottom: 20px !important;
-}
 body {
-  height: 120vh;
+  min-height: 100vh;
+  font-family: "DM Sans", sans-serif;
   background: linear-gradient(
     29deg,
     rgba(17, 17, 17, 1) 0%,
     rgb(27, 106, 161) 100%
   );
+  color: #edf0f1;
+}
+
+.head,
+.addplayercontent {
+  text-decoration: none;
+  color: #edf0f1;
+}
+
+cus option {
+  padding-bottom: 20px !important;
 }
 
 .playerSelectionContent #addPlayerButton {
@@ -37,27 +37,38 @@ body {
   justify-content: center;
   margin-top: 20px;
 }
+
 .addplayercontent #desc {
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  font-size: 24px;
 }
+
 .addplayercontent label {
-  margin-bottom: 20px; /* Lisää 20px väliä pelaajan lisäämistekstin ja tekstikentän välille */
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+#name {
+  height: 40px;
+  width: 200px;
 }
 
 .addplayercontent input {
-  margin-bottom: 20px; /* Lisää 20px väliä tekstikentän ja lisää-napin välille */
+  margin-bottom: 20px;
 }
+
 .addplayercontent button {
   height: 30px;
   width: 60px;
 }
+
 .playerSelectionContent {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 24px;
 }
 
 #contentDisplay ul {
@@ -69,45 +80,18 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff; /* Tekstin väri valkoiseksi */
-  font-size: 16px; /* Aseta fontin koko */
-  margin-bottom: 10px; /* Lisää väliä alapuolelle */
+  margin-bottom: 10px;
+  font-size: 24px;
 }
 
 #contentDisplay span {
   cursor: pointer;
-  font-size: 20px; /* Isompi fonttikoko */
   margin-left: 150px;
-}
-
-.playerSelectionContent p {
-  font-size: 18px;
 }
 
 nav {
   background-color: rgb(24, 24, 24);
   padding: 5px 20px;
-}
-
-ul {
-  list-style-type: none;
-}
-
-a {
-  font-family: "DM Sans", sans-serif;
-  font-weight: 500;
-  text-decoration: none;
-  color: #fff;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 10%;
-  background-color: rgb(24, 24, 24);
-  font-size: clamp(0.75rem, 1.5vw, 2rem);
-  color: #edf0f1;
 }
 
 nav ul {
@@ -138,8 +122,6 @@ nav ul li a:hover {
   display: flex;
   justify-content: center;
   padding: 20px;
-  color: #edf0f1;
-  font-size: clamp(0.75rem, 1.5vw, 2rem);
 }
 
 /* Navigation */
@@ -148,6 +130,7 @@ nav ul li a:hover {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  min-height: 60px;
 }
 
 .toggle {
@@ -196,7 +179,6 @@ nav ul li a:hover {
 .bars:after {
   top: -5px;
 }
-
 @media all and (min-width: 368px) {
   .nav__links {
     justify-content: center;
@@ -218,12 +200,7 @@ nav ul li a:hover {
     padding-right: 0;
   }
 }
-
 @media all and (min-width: 768px) {
-  #contentDisplay li {
-    font-size: 14px; /* Pienennä fonttikokoa pienemmillä näytöillä tarvittaessa */
-  }
-
   .item {
     display: block;
     width: auto;
@@ -241,22 +218,15 @@ nav ul li a:hover {
     order: 1;
   }
 
-  .nav__links li {
-    padding: 15px 10px;
-  }
-
   .nav__links li.button {
     padding-right: 0;
   }
-  /* Kun näyttö on pienempi kuin 768px */
+
   .addplayercontent {
-    margin-top: 10px; /* Pienennä marginaalia */
+    margin-top: 10px;
   }
   .addplayercontent #desc {
-    margin-top: 10px; /* Pienennä marginaalia */
-    margin-bottom: 10px; /* Pienennä marginaalia */
-  }
-  .playerSelectionContent p {
-    font-size: 16px; /* Pienennä fonttikokoa */
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 }

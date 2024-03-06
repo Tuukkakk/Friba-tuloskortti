@@ -52,6 +52,10 @@ a {
   margin-bottom: 40px;
   margin-top: 40px;
 }
+#courseNameHeader {
+  display: inline-block; /* Tehdään h1-elementistä lohko, jotta se voidaan keskittää */
+  margin: 0 auto; /* Keskitä radan nimi */
+}
 
 @media all and (min-width: 200px) {
   .nav {
@@ -87,7 +91,7 @@ a {
   .head {
     order: 0;
     align-items: center;
-    font-size: 1px;
+    font-size: 18px;
   }
   .imageDisplay {
     display: flex;
