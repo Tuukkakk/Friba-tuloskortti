@@ -61,7 +61,7 @@
       });
     </script>
 
-    <!-- scripts that handle fetching players for selection-->
+    <!-- scripts that handle fetching players for selection--------------------------------------------------------------------------->
     <script type="module">
       import { playerArr } from "./main.js";
 
@@ -69,18 +69,14 @@
       var parsedArr = JSON.parse(retrievedArr);
       console.log("Haetut pelaajat:", parsedArr);
 
-      // Luo valintaruudut pelaajille
+      // Luo pelaajien valintaelementit
       parsedArr.forEach((player) => {
         var playerOption = document.createElement("div");
         playerOption.classList.add("player-option");
         playerOption.textContent = player.Name;
         playerOption.addEventListener("click", function () {
           // Lisää tai poista valinta klikkaamalla pelaajan nimeä
-          if (playerOption.classList.contains("selected")) {
-            playerOption.classList.remove("selected");
-          } else {
-            playerOption.classList.add("selected");
-          }
+          playerOption.classList.toggle("selected");
         });
 
         var container = document.getElementById("players-container");
@@ -100,11 +96,11 @@
         .getElementById("select-players-button")
         .addEventListener("click", function () {
           var selectedPlayers = [];
-          var checkboxes = document.querySelectorAll(
-            'input[name="selected-players"]:checked'
+          var selectedPlayerOptions = document.querySelectorAll(
+            ".player-option.selected"
           );
-          checkboxes.forEach((checkbox) => {
-            selectedPlayers.push(checkbox.value);
+          selectedPlayerOptions.forEach((playerOption) => {
+            selectedPlayers.push(playerOption.textContent);
           });
           console.log("Valitut pelaajat:", selectedPlayers);
         });

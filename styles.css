@@ -6,43 +6,25 @@
   font-family: "DM Sans", sans-serif;
   text-decoration: none;
 }
-
-/* Tyylit valintalaatikolle */
-#players-container {
-  display: flex; /* Käytä Flexboxia */
-  flex-direction: column; /* Aseta sarakkeiden suunta */
-  align-items: center; /* Keskitä sisältö vaakasuunnassa */
-}
-#players-selection-container {
-  background-color: rgb(34, 34, 34); /* Aseta taustaväri diville */
-  padding: 10px; /* Aseta haluamasi sisennys */
-  margin-bottom: 10px; /* Lisää tarvittava marginaali */
-}
-.player-option {
-  display: flex; /* Käytä Flexboxia pelaajien nimien sisältämiseen */
-  align-items: flex-start; /* Kohdista pelaajan nimi ja checkbox vasempaan laitaan pystysuunnassa */
-  margin-bottom: 20px; /* Lisää marginaalia alapuolelle */
-  cursor: pointer; /* Osoita, että pelaajan nimi on valittavissa */
+.content {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  color: #f5f5f5;
   font-size: 20px;
-  color: rgb(216, 216, 216);
+  background-color: rgb(34, 34, 34);
+}
+.dropdownclass {
+  background-color: rgb(34, 34, 34);
+  padding-bottom: 50px;
 }
 
-.player-option input[type="checkbox"] {
-  margin-right: 10px; /* Lisää hieman välistystä checkboxin ja pelaajan nimen välille */
+.player-option {
+  cursor: pointer; /* Osoita, että pelaajan nimi on valittavissa */
 }
 
 .player-option.selected {
   background-color: lightblue; /* Korosta valittu pelaaja */
-}
-
-.selPlayersHead {
-  display: flex !important; /* Muuta painike lohkoksi */
-  justify-content: center !important;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: 20px;
-  font-weight: 300;
-  color: #f5f5f5;
 }
 
 .head,
@@ -111,14 +93,6 @@ nav ul li a.active {
 
 nav ul li a:hover {
   color: rgb(36, 175, 255);
-}
-
-.content {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  color: #f5f5f5;
-  font-size: 20px;
 }
 
 /* Navigation */
