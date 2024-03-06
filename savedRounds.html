@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Friba tuloskortti</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- script for hamburger menu-->
+    <script>
+      $(function () {
+        $(".toggle").on("click", function () {
+          if ($(".item").hasClass("active")) {
+            $(".item").removeClass("active");
+          } else {
+            $(".item").addClass("active");
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <nav className="nav">
+      <ul class="nav__links">
+        <li class="head"><h1>Friba tuloskortti</h1></li>
+        <li class="item">
+          <a class="navA" href="startRound.html" id="startRound"
+            >Aloita kierros</a
+          >
+        </li>
+        <li class="item">
+          <a href="savedRounds.html" id="savedRounds">Tallennetut kierrokset</a>
+        </li>
+        <li class="item">
+          <a href="addplayer.html" id="addPlayer">Lisää pelaaja</a>
+        </li>
+        <li class="toggle"><span class="bars"></span></li>
+      </ul>
+    </nav>
+    <script src="script.js"></script>
+    <div class="content">
+      <p>Tällä sivulla näät menneet kierroksesi ja niiden tulokset</p>
+    </div>
+  </body>
+</html>

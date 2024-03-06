@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Friba tuloskortti</title>
+    <link rel="stylesheet" href="stylesforendround.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- script for hamburger menu-->
+    <script>
+      $(function () {
+        $(".toggle").on("click", function () {
+          if ($(".item").hasClass("active")) {
+            $(".item").removeClass("active");
+          } else {
+            $(".item").addClass("active");
+          }
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $("#returnButton").click(function () {
+          window.location.href = "startRound.html";
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <nav class="nav">
+      <ul class="nav__links">
+        <li class="head"><h1>Friba tuloskortti</h1></li>
+        <li class="item">
+          <a href="startRound.html" id="startRound">Aloita kierros</a>
+        </li>
+        <li class="item">
+          <a href="savedRounds.html" id="savedRounds">Tallennetut kierrokset</a>
+        </li>
+        <li class="item">
+          <a href="addplayer.html" id="addPlayer">Lisää pelaaja</a>
+        </li>
+        <li class="toggle"><span class="bars"></span></li>
+      </ul>
+    </nav>
+    <div class="scoreText"></div>
+    <div class="endRoundScores">
+      <div id="playerScores"></div>
+      <!-- Display player scores here -->
+      <ul></ul>
+    </div>
+
+    <div id="scoresGrid"></div>
+    <script>
+      // Retrieve players and totalScores from local storage
+      var players = JSON.parse(localStorage.getItem("players"));
+      var totalScores = JSON.parse(localStorage.getItem("totalScores"));
+
+      // Function to display players and their total scores
+      function displayPlayerScores() {
+        var playerScoresDiv = document.getElementById("playerScores");
+        var selectedCourse = JSON.parse(localStorage.getItem("selectedCourse"));
+        var coursePar = selectedCourse.par;
+
+        // Create a header for the player scores
+        var header = document.createElement("h2");
+        header.textContent = "Pelaajien tulokset:";
+        header.classList.add("pelaajienTuloksetHead");
+        playerScoresDiv.appendChild(header);
+
+        // Loop through players and display their total scores
+        players.forEach(function (player, index) {
+          var totalScore = totalScores[index] - coursePar; // Laske pelaajan kokonaistulos vähentämällä coursePar
+          var scoreDifference = ""; // Alustetaan muuttuja, johon lisätään "+" merkki tarvittaessa
+          if (totalScore >= 0) {
+            scoreDifference = "+"; // Lisätään "+" merkki positiivisille tuloksille
+          }
+          var playerScoreDiv = document.createElement("div");
+          playerScoreDiv.classList.add("player-score"); // Lisää luokka "player-score"
+          playerScoreDiv.innerHTML = `
+    <span class="player-name">${player}</span>
+    <span class="score">${scoreDifference}${totalScore} (${totalScores[index]}) pistettä</span>
+  `;
+          playerScoresDiv.appendChild(playerScoreDiv);
+        });
+      }
+
+      // Call the function to display player scores
+      displayPlayerScores();
+    </script>
+    <script>
+      // Retrieve players and totalScores from local storage
+      var players = JSON.parse(localStorage.getItem("players"));
+      var totalScores = JSON.parse(localStorage.getItem("totalScores"));
+
+      // Function to generate the scores grid
+      function generateScoresGrid() {
+        var scoresGridDiv = document.getElementById("scoresGrid");
+        var tableWrapper = document.createElement("div");
+        tableWrapper.className = "table-wrapper";
+
+        // Create the first table for holes 1 to 9
+        var table1 = createTable(9);
+        tableWrapper.appendChild(table1);
+
+        // Create the second table for holes 10 to 18
+        var table2 = createTable(18, 10);
+        tableWrapper.appendChild(table2);
+
+        scoresGridDiv.appendChild(tableWrapper);
+      }
+
+      // Function to create a table for specified range of holes
+      function createTable(endHole, startHole = 1) {
+        var table = document.createElement("table");
+        var headerRow = document.createElement("tr");
+
+        // Add an empty cell before holes for player names
+        var emptyCell = document.createElement("th");
+        emptyCell.textContent = "";
+        headerRow.appendChild(emptyCell);
+
+        // Create header cells for holes
+        for (var i = startHole; i <= endHole; i++) {
+          var th = document.createElement("th");
+          th.textContent = "Väylä " + i;
+          headerRow.appendChild(th);
+        }
+        table.appendChild(headerRow);
+
+        // Create rows for each player
+        players.forEach(function (player) {
+          var playerRow = document.createElement("tr");
+          var playerNameCell = document.createElement("td");
+          playerNameCell.textContent = player;
+          playerRow.appendChild(playerNameCell);
+
+          // Fill in scores for each hole
+          for (var i = startHole; i <= endHole; i++) {
+            // Here, you need to retrieve the individual scores per hole
+            // and fill in the table accordingly
+            var score = 0; // Change this line to get the actual score from your data
+            var td = document.createElement("td");
+            td.textContent = score;
+            playerRow.appendChild(td);
+          }
+
+          table.appendChild(playerRow);
+        });
+
+        return table;
+      }
+
+      // Call the function to generate the scores grid
+      generateScoresGrid();
+    </script>
+
+    <div>
+      <button id="returnButton">Lopeta</button>
+    </div>
+  </body>
+</html>

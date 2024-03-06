@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Puhelinluettelotehtävä</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="main.js"></script>
+    <script type="module" src="getPerson.js"></script>
+    <script type="module">
+      import { personArr } from "./main.js";
+      import { getPerson } from "./getPerson.js";
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("searchButton")
+          .addEventListener("click", function () {
+            //2.
+            var retrievedArr = localStorage.getItem("personArr");
+            const parsedArr = JSON.parse(retrievedArr);
+
+            const searchNameInput = document.getElementById("searchName");
+            const searchName = searchNameInput.value;
+            //3.
+            var obj = JSON.parse(retrievedArr, function (key, value) {
+              console.log(value);
+              if (value == searchName) {
+                return alert(value + "found");
+              } else {
+                return alert("not found");
+              }
+            });
+
+            searchNameInput.value = "";
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <h2>Puhelinluettelotehtävä</h2>
+    <nav class="nav">
+      <ul class="navbar">
+        <li><a href="search.html">Puhelinluettelo</a></li>
+        <li><a href="addNewPerson.html">Lisää uusi henkilö</a></li>
+      </ul>
+    </nav>
+
+    <div class="content">
+      <p>Hae nimellä</p>
+      <label for="searchName">Nimi</label>
+      <input type="text" id="searchName" name="searchName" />
+      <button id="searchButton">Hae</button>
+    </div>
+  </body>
+</html>

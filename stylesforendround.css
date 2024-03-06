@@ -1,0 +1,280 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "DM Sans", sans-serif;
+  text-decoration: none;
+}
+
+.head {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #edf0f1;
+  text-decoration: none;
+  font-size: clamp(0.75rem, 1.5vw, 2rem);
+}
+
+body {
+  height: 120vh;
+  background: linear-gradient(
+    29deg,
+    rgba(17, 17, 17, 1) 0%,
+    rgb(27, 106, 161) 100%
+  );
+}
+th,
+td {
+  color: rgb(215, 215, 215);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Varmistetaan, että säiliö täyttää vähintään näyttökorkeuden */
+}
+
+.table-wrapper {
+  overflow-x: auto; /* Lisätään vaaka vieritys tarvittaessa */
+  background-color: rgb(24, 24, 24);
+}
+
+.nav {
+  position: sticky; /* Kiinnitä navigointi yläreunaan */
+  top: 0; /* Yläreunaan kiinnitetyn elementin sijainti */
+  width: 100%; /* Täysin leveys */
+  background-color: rgb(24, 24, 24); /* Taustaväri */
+  z-index: 1; /* Aseta etualalle, jotta se ei mene muiden elementtien taakse */
+}
+nav {
+  background-color: rgb(24, 24, 24);
+  padding: 5px 20px;
+}
+
+.scoreText {
+  position: sticky; /* Kiinnitä pisteteksti yläreunaan */
+  top: 0; /* Yläreunaan kiinnitetyn elementin sijainti */
+  width: 100%; /* Täysin leveys */
+  background-color: rgb(24, 24, 24); /* Taustaväri */
+  z-index: 1; /* Aseta etualalle, jotta se ei mene muiden elementtien taakse */
+  font-size: clamp(10px, 3vw, 16px); /* Muuta pistetekstin kokoa dynaamisesti */
+  text-align: center; /* Keskitä teksti */
+  padding: 10px 0; /* Lisää ylimääräistä tilaa ylä- ja alapuolelle */
+}
+
+/* CSS for player score display */
+.player-score {
+  background-color: rgb(25, 25, 25); /* Taustaväri */
+  color: rgb(215, 215, 215); /* Tekstin väri */
+  padding: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.endRoundScores {
+  background-color: rgb(25, 25, 25); /* Taustaväri */
+  color: rgb(215, 215, 215); /* Tekstin väri */
+  padding-bottom: 20px;
+}
+
+.player-name {
+  margin-right: auto; /* Aseta nimi ruudun vasempaan laitaan */
+}
+
+.score {
+  margin-left: auto; /* Aseta pisteet ruudun oikeaan laitaan */
+}
+
+.scoreText h1 {
+  color: rgb(215, 215, 215) !important;
+}
+
+a {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+}
+.pelaajienTuloksetHead {
+  font-size: 17px;
+  margin-left: 10px;
+}
+header {
+  font-family: "DM Sans", sans-serif;
+  color: #edf0f1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
+  background-color: rgb(24, 24, 24);
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+nav ul li a.active {
+  color: rgb(13, 151, 214); /* change color when active*/
+}
+nav ul li a:hover {
+  color: rgb(36, 175, 255);
+}
+
+.nav__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle {
+  order: 1;
+}
+
+.item {
+  width: 100%;
+  text-align: center;
+  order: 3;
+  display: none;
+}
+.item.active {
+  display: block;
+}
+
+.toggle {
+  cursor: pointer;
+}
+
+.toggle {
+  cursor: pointer;
+}
+#returnButton {
+  margin-top: 2vh;
+  display: inline-block;
+  margin-right: 2vw;
+  font-size: 1.5dvh;
+  color: #333;
+  height: 4vh;
+  width: 15vw;
+  margin-bottom: 2vh;
+}
+
+.bars {
+  background: #999;
+  display: inline-block;
+  height: 2px;
+  position: relative;
+  transition: background 0.2s ease-out;
+  width: 18px;
+}
+.bars:before,
+.bars:after {
+  background: #999;
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+.bars:before {
+  top: 5px;
+}
+.bars:after {
+  top: -5px;
+}
+
+@media all and (min-width: 350px) {
+  .nav__links {
+    justify-content: center;
+  }
+
+  .head {
+    flex: 1;
+  }
+
+  .toggle {
+    order: 2;
+  }
+  .nav__links li {
+    padding: 15px 10px;
+  }
+  .nav__links li.button {
+    padding-right: 0;
+  }
+}
+
+@media all and (min-width: 768px) {
+  .item {
+    display: block;
+    width: auto;
+  }
+  .toggle {
+    display: block; /* Näytä hampurilaisvalikko pienillä näytön leveyksillä */
+    order: 4; /* Aseta järjestys, jotta se sijoittuu oikealle */
+    margin-left: auto; /* Aseta marginaali automaattisesti vasemmalle, jotta se pysyy oikealla */
+    margin-right: 20px; /* Lisää hieman marginaalia oikealle, jotta se ei ole liian lähellä reunaa */
+  }
+  .head {
+    order: 0;
+  }
+  .item {
+    order: 1;
+  }
+  .nav__links li {
+    padding: 15px 10px;
+  }
+  .nav__links li.button {
+    padding-right: 0;
+  }
+}
+
+/* Styles for tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%; /* Limit maximum width to 100% */
+  margin-bottom: 20px;
+  margin-top: 20px;
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+
+th,
+td {
+  border: 2px solid #252525;
+  text-align: center;
+  padding: 8px;
+  font-size: clamp(
+    0.75rem,
+    1.5vw,
+    2rem
+  ); /* Dynamic font-size based on viewport width */
+  white-space: nowrap; /* Prevent wrapping of content */
+}
+
+/* Styles for responsive design */
+@media screen and (max-width: 600px) {
+  th,
+  td {
+    font-size: 8px; /* Decrease font size for smaller screens */
+    padding: 3px; /* Adjust padding for smaller screens */
+    font-size: clamp(0.75rem, 1.5vw, 2rem);
+    white-space: normal; /* Allow wrapping of content */
+  }
+}
+
+@media screen and (max-width: 400px) {
+  th,
+  td {
+    font-size: 6px; /* Further decrease font size for smaller screens */
+    padding: 1px; /* Further adjust padding for smaller screens */
+    font-size: clamp(0.75rem, 1.5vw, 2rem);
+  }
+}

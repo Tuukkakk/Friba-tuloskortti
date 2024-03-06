@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Friba tuloskortti</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- script for hamburger menu-->
+    <script>
+      $(function () {
+        $(".toggle").on("click", function () {
+          if ($(".item").hasClass("active")) {
+            $(".item").removeClass("active");
+          } else {
+            $(".item").addClass("active");
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <nav className="nav">
+      <ul class="nav__links">
+        <li class="head"><h1>Friba tuloskortti</h1></li>
+        <li class="item">
+          <a href="startRound.html" id="startRound">Aloita kierros</a>
+        </li>
+        <li class="item">
+          <a href="savedRounds.html" id="savedRounds">Tallennetut kierrokset</a>
+        </li>
+        <li class="item">
+          <a href="addplayer.html" id="addPlayer">Lisää pelaaja</a>
+        </li>
+        <li class="toggle"><span class="bars"></span></li>
+      </ul>
+    </nav>
+    <script src="script.js"></script>
+    <div class="content">
+      <p>Tällä sivulla voit aloittaa uuden kierroksen</p>
+    </div>
+
+    <div class="dropdownclass">
+      <select id="courseSelect" class="customSelect selectCourseDropdown">
+        <option selected value="0">Valitse rata</option>
+      </select>
+    </div>
+    <!-- scripts that handle dropdown for courses-->
+    <script src="courses.js"></script>
+    <script>
+      const dropdown = document.getElementById("courseSelect");
+
+      courses.forEach((course) => {
+        const option = document.createElement("option");
+        option.value = course.name;
+        option.textContent = course.name + " par " + course.par;
+        dropdown.appendChild(option);
+      });
+    </script>
+
+    <!-- scripts that handle fetching players for selection-->
+    <script type="module">
+      import { playerArr } from "./main.js";
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var retrievedArr = localStorage.getItem("playerArr");
+        const parsedArr = JSON.parse(retrievedArr);
+        console.log(parsedArr);
+        const contentDisplay = document.getElementById("contentDisplay");
+
+        const select = document.createElement("select");
+        select.setAttribute("multiple", true);
+
+        // Add mousedown event listener to the select element
+        select.addEventListener("mousedown", function (e) {
+          e.preventDefault();
+
+          // Get the original scroll position
+          var originalScrollTop = this.scrollTop;
+
+          // Get the clicked option
+          var option = e.target;
+
+          // Toggle the selection of the clicked option
+          option.selected = !option.selected;
+
+          // Keep the original scroll position
+          var self = this;
+          setTimeout(function () {
+            self.scrollTop = originalScrollTop;
+          }, 0);
+        });
+
+        parsedArr.forEach((item) => {
+          const option = document.createElement("option");
+          if (typeof item === "object") {
+            option.textContent = item.Name;
+          } else {
+            option.textContent = item;
+          }
+          select.appendChild(option);
+        });
+        contentDisplay.appendChild(select);
+      });
+    </script>
+
+    <div class="playerSelectionBox">
+      <p class="contentForPlayerSel">Valitse pelaajat kierrokselle</p>
+      <div id="contentDisplay"></div>
+    </div>
+
+    <div class="startRoundButton">
+      <button onclick="openPlayRoundHtml()">Aloita kierros</button>
+
+      <script>
+        function openPlayRoundHtml() {
+          // Get the selected course
+          var selectedCourse = document.getElementById("courseSelect").value;
+
+          // Get the selected players' names
+          var selectedPlayers = [];
+          var selectedOptions = document
+            .getElementById("contentDisplay")
+            .querySelectorAll("option:checked");
+          selectedOptions.forEach((option) => {
+            selectedPlayers.push(option.textContent);
+          });
+
+          // Check if a course is selected
+          if (selectedCourse === "0") {
+            alert("Valitse ensin rata aloittaaksesi kierroksen.");
+            return; // Prevent further execution
+          }
+          if (selectedPlayers.length === 0) {
+            alert("Valitse edes yksi pelaaja aloittaaksesi kierroksen.");
+            return; // Prevent further execution
+          }
+
+          // Redirect to playRound.html with parameters
+          window.location.href =
+            "./playRound.html?course=" +
+            encodeURIComponent(selectedCourse) +
+            "&players=" +
+            encodeURIComponent(selectedPlayers.join(","));
+        }
+      </script>
+    </div>
+  </body>
+</html>

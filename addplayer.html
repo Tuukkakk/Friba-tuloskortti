@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Friba tuloskortti</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="module" src="main.js"></script>
+    <script>
+      $(function () {
+        $(".toggle").on("click", function () {
+          if ($(".item").hasClass("active")) {
+            $(".item").removeClass("active");
+          } else {
+            $(".item").addClass("active");
+          }
+        });
+      });
+    </script>
+    <script type="module">
+      import { addNewPlayer } from "./addNewPlayer.js";
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("addPlayerButton")
+          .addEventListener("click", function () {
+            addNewPlayer();
+            updatePlayerList();
+          });
+
+        // Keydown event listener for the input field
+        document
+          .getElementById("name")
+          .addEventListener("keydown", function (event) {
+            // Check if the key pressed is Enter (key code 13)
+            if (event.keyCode === 13) {
+              // Trigger click on the "Lisää" button
+              document.getElementById("addPlayerButton").click();
+            }
+          });
+
+        function updatePlayerList() {
+          var retrievedArr = localStorage.getItem("playerArr");
+          const parsedArr = JSON.parse(retrievedArr) || []; // Initialize as empty array if localStorage is empty
+          const contentDisplay = document.getElementById("contentDisplay");
+          const list = document.createElement("ul");
+
+          parsedArr.forEach((item, index) => {
+            const listItem = document.createElement("li");
+            if (typeof item === "object") {
+              listItem.textContent = item.Name;
+            } else {
+              listItem.textContent = item;
+            }
+
+            const deleteIcon = document.createElement("span");
+            deleteIcon.innerHTML = "&#128465;";
+            deleteIcon.style.cursor = "pointer";
+            deleteIcon.addEventListener("click", function () {
+              parsedArr.splice(index, 1);
+              localStorage.setItem("playerArr", JSON.stringify(parsedArr));
+              updatePlayerList();
+            });
+            listItem.appendChild(deleteIcon);
+            list.appendChild(listItem);
+          });
+
+          contentDisplay.innerHTML = "";
+          contentDisplay.appendChild(list);
+        }
+
+        updatePlayerList(); // Call updatePlayerList on page load
+      });
+    </script>
+  </head>
+  <body>
+    <nav class="nav">
+      <ul class="nav__links">
+        <li class="head"><h1>Friba tuloskortti</h1></li>
+        <li class="item">
+          <a href="startRound.html" id="startRound">Aloita kierros</a>
+        </li>
+        <li class="item">
+          <a href="savedRounds.html" id="savedRounds">Tallennetut kierrokset</a>
+        </li>
+        <li class="item">
+          <a href="addplayer.html" id="addPlayer">Lisää pelaaja</a>
+        </li>
+        <li class="toggle"><span class="bars"></span></li>
+      </ul>
+    </nav>
+    <script src="script.js"></script>
+    <div class="addplayercontent">
+      <p id="desc">Täällä voit hallinnoida pelaajia</p>
+      <label for="newPlayer">Lisää pelaaja:</label>
+      <input type="text" id="name" name="name" /><br /><br />
+      <button id="addPlayerButton">Lisää</button>
+      <ul id="playerList"></ul>
+    </div>
+    <div class="playerSelectionContent">
+      <p class="contentForPlayerSel">Kaikki lisätyt pelaajat</p>
+      <div id="contentDisplay"></div>
+    </div>
+  </body>
+</html>

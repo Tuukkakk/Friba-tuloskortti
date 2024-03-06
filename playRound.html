@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Friba tuloskortti</title>
+    <link rel="stylesheet" href="stylesforplayround.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Pelaa kierros</title>
+  </head>
+  <body>
+    <nav class="nav">
+      <ul class="nav__links">
+        <li class="head"><h1 id="courseNameHeader"></h1></li>
+      </ul>
+    </nav>
+    <div id="courseInfo"></div>
+    <picture class="imageDisplay">
+      <img id="holeImage" style="max-width: 300px; height: auto" />
+    </picture>
+
+    <div id="navigation">
+      <button id="prevHole">&lt;</button>
+      <button id="nextHole">&gt;</button>
+    </div>
+
+    <div id="scores"></div>
+    <button id="cancelRoundButton">Peruuta kierros</button>
+    <button id="endRoundButton" style="display: none">Lopeta kierros</button>
+    <script src="courses.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Set the course name as the header
+        document.getElementById("courseNameHeader").textContent =
+          selectedCourse.name;
+
+        // Event listener for cancel the round button
+        $("#cancelRoundButton").on("click", function () {
+          var result = confirm("Haluatko varmasti peruuttaa kierroksen?");
+          if (result) {
+            window.location.href = "startRound.html";
+          } else {
+            console.log("Kierroksen peruutus peruttu.");
+          }
+        });
+      });
+
+      var currentHoleIndex = 0;
+      var selectedCourse;
+      var players = []; // Array to store player names
+      var scoresPerHole = []; // Array to store scores per hole
+      var totalScores = []; // Array to store total scores for each player
+
+      function initializeScores() {
+        scoresPerHole = selectedCourse.holes.map(function (hole) {
+          return {
+            par: hole.par,
+            scores: Array(players.length).fill(hole.par), // Initialize scores with the par value for each hole
+          };
+        });
+      }
+
+      function displayHole(holeIndex) {
+        var hole = selectedCourse.holes[holeIndex];
+        var holeDiv = document.createElement("div");
+        holeDiv.classList.add("hole");
+        holeDiv.innerHTML =
+          "<p>Väylä " +
+          hole.number +
+          "</p><p>Par: " +
+          hole.par +
+          "</p><p>" +
+          hole.meters +
+          " Metriä" +
+          "</p>";
+        document.getElementById("courseInfo").innerHTML = "";
+        document.getElementById("courseInfo").appendChild(holeDiv);
+
+        // Update the picture in the website according to the hole
+        var holeImage = document.getElementById("holeImage");
+        holeImage.src = hole.imgLink;
+
+        // Display score input fields
+        var scoresDiv = document.getElementById("scores");
+        scoresDiv.innerHTML = "";
+        players.forEach(function (player, playerIndex) {
+          var playerRow = document.createElement("div");
+          playerRow.classList.add("player-row");
+          var playerName = document.createElement("div");
+          playerName.classList.add("player-name");
+
+          var scoreDiff =
+            scoresPerHole[holeIndex].scores[playerIndex] - hole.par;
+          playerName.textContent =
+            player + " (" + (scoreDiff >= 0 ? "+" : "") + scoreDiff + ")";
+          playerRow.appendChild(playerName);
+
+          var scoreDisplay = document.createElement("div");
+          scoreDisplay.classList.add("score-display");
+          scoreDisplay.textContent =
+            scoresPerHole[holeIndex].scores[playerIndex]; // Display score for the current hole
+          playerRow.appendChild(scoreDisplay);
+
+          var scoreButtons = document.createElement("div");
+          scoreButtons.classList.add("score-buttons");
+          var plusButton = document.createElement("button");
+          plusButton.textContent = "+";
+          plusButton.addEventListener("click", function () {
+            scoresPerHole[holeIndex].scores[playerIndex]++;
+            updateScoresDisplay();
+            updateTotalScores(); // Update total scores after score change
+          });
+          scoreButtons.appendChild(plusButton);
+          var minusButton = document.createElement("button");
+          minusButton.textContent = "-";
+          minusButton.addEventListener("click", function () {
+            scoresPerHole[holeIndex].scores[playerIndex] = Math.max(
+              hole.par - 5,
+              scoresPerHole[holeIndex].scores[playerIndex] - 1
+            );
+            updateScoresDisplay();
+            updateTotalScores(); // Update total scores after score change
+          });
+          scoreButtons.appendChild(minusButton);
+          playerRow.appendChild(scoreButtons);
+          scoresDiv.appendChild(playerRow);
+        });
+
+        // Update total scores when switching a hole
+        updateTotalScores();
+
+        // Show the "End Round" button if it's the last hole
+        if (holeIndex === selectedCourse.holes.length - 1) {
+          document.getElementById("endRoundButton").style.display = "block";
+        } else {
+          document.getElementById("endRoundButton").style.display = "none";
+        }
+        var isButtonClicked = false;
+
+        document
+          .getElementById("prevHole")
+          .addEventListener("click", () => (isButtonClicked = true));
+        document
+          .getElementById("nextHole")
+          .addEventListener("click", () => (isButtonClicked = true));
+      }
+      //Function that updates the score adding for players
+      function updateScoresDisplay() {
+        var hole = selectedCourse.holes[currentHoleIndex];
+        var scoresDiv = document.getElementById("scores");
+        scoresDiv.innerHTML = "";
+
+        players.forEach(function (player, playerIndex) {
+          var playerRow = document.createElement("div");
+          playerRow.classList.add("player-row");
+
+          var playerName = document.createElement("div");
+          playerName.classList.add("player-name");
+
+          var scoreDiff =
+            scoresPerHole[currentHoleIndex].scores[playerIndex] - hole.par;
+          playerName.textContent =
+            player + " (" + (scoreDiff >= 0 ? "+" : "") + scoreDiff + ")";
+          playerRow.appendChild(playerName);
+
+          var scoreDisplay = document.createElement("div");
+          scoreDisplay.classList.add("score-display");
+          scoreDisplay.textContent =
+            scoresPerHole[currentHoleIndex].scores[playerIndex]; // Display score for the current hole
+          playerRow.appendChild(scoreDisplay);
+
+          var scoreButtons = document.createElement("div");
+          scoreButtons.classList.add("score-buttons");
+
+          var plusButton = document.createElement("button");
+          plusButton.textContent = "+";
+          plusButton.addEventListener("click", function () {
+            scoresPerHole[currentHoleIndex].scores[playerIndex]++;
+            updateScoresDisplay();
+            updateTotalScores();
+          });
+
+          var minusButton = document.createElement("button");
+          minusButton.textContent = "-";
+          minusButton.addEventListener("click", function () {
+            if (scoresPerHole[currentHoleIndex].scores[playerIndex] > 1) {
+              scoresPerHole[currentHoleIndex].scores[playerIndex]--;
+              updateScoresDisplay();
+              updateTotalScores();
+            }
+          });
+
+          scoreButtons.appendChild(plusButton);
+          scoreButtons.appendChild(minusButton);
+          playerRow.appendChild(scoreButtons);
+          scoresDiv.appendChild(playerRow);
+        });
+      }
+      //Function that handles hole navigation buttons
+      function updateNavigationButtons() {
+        var navigationDiv = document.getElementById("navigation");
+        navigationDiv.innerHTML = ""; // Clear previous navigation buttons
+
+        // Add Previous Hole button
+        var prevButton = document.createElement("button");
+        prevButton.id = "prevHole";
+        prevButton.innerHTML = "&lt;";
+        prevButton.disabled = currentHoleIndex === 0;
+        prevButton.addEventListener("click", function () {
+          if (currentHoleIndex > 0) {
+            currentHoleIndex--;
+            displayHole(currentHoleIndex);
+            updateNavigationButtons();
+          }
+        });
+        navigationDiv.appendChild(prevButton);
+
+        // Add Next Hole button
+        var nextButton = document.createElement("button");
+        nextButton.id = "nextHole";
+        nextButton.innerHTML = "&gt;";
+        nextButton.disabled =
+          currentHoleIndex === selectedCourse.holes.length - 1;
+        nextButton.addEventListener("click", function () {
+          if (currentHoleIndex < selectedCourse.holes.length - 1) {
+            currentHoleIndex++;
+            displayHole(currentHoleIndex);
+            updateNavigationButtons();
+          }
+        });
+        navigationDiv.appendChild(nextButton);
+      }
+
+      // Function to get URL parameters
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+        var results = regex.exec(location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+      // Get the course from URL parameters
+      var course = getUrlParameter("course");
+
+      // Get the players from URL parameters
+      var playersParam = getUrlParameter("players");
+      players = playersParam.split(",");
+
+      // Find the selected course from the courses data
+      selectedCourse = courses.find((c) => c.name === course);
+
+      // Initialize scores for each hole
+      initializeScores();
+
+      // Display initial hole
+      if (selectedCourse) {
+        displayHole(currentHoleIndex);
+        updateNavigationButtons();
+      } else {
+        document.getElementById("courseInfo").innerHTML =
+          "<p>Ratatietoja ei löytynyt.</p>";
+      }
+
+      // Function to update total scores
+      function updateTotalScores() {
+        totalScores = []; // Reset total scores
+        var totalPar = 0;
+
+        scoresPerHole.forEach(function (holeData) {
+          totalPar += holeData.par;
+          holeData.scores.forEach(function (score, playerIndex) {
+            if (!totalScores[playerIndex]) {
+              totalScores[playerIndex] = 0;
+            }
+            totalScores[playerIndex] += score;
+          });
+        });
+
+        players.forEach(function (player, playerIndex) {
+          var totalScore = totalScores[playerIndex] - totalPar;
+          var playerRow = document.querySelectorAll(".player-row")[playerIndex];
+          playerRow.querySelector(".player-name").textContent =
+            player + " (" + (totalScore >= 0 ? "+" : "") + totalScore + ")";
+          console.log(player + " total score: " + totalScore);
+        });
+      }
+
+      // Function to end the round and redirect to endRoundPage.html
+      function endRound() {
+        // Store player names
+        localStorage.setItem("players", JSON.stringify(players));
+
+        // Store scores per hole
+        localStorage.setItem("scoresPerHole", JSON.stringify(scoresPerHole));
+
+        // Store total scores
+        localStorage.setItem("totalScores", JSON.stringify(totalScores));
+
+        //Store selected course
+        localStorage.setItem("selectedCourse", JSON.stringify(selectedCourse));
+
+        // Redirect to endRoundPage.html
+        window.location.href = "endRoundPage.html";
+      }
+
+      // Add event listener to the "End Round" button
+      document
+        .getElementById("endRoundButton")
+        .addEventListener("click", endRound);
+    </script>
+  </body>
+</html>
