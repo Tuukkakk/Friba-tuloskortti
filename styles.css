@@ -156,6 +156,7 @@ nav ul li a:hover {
   background-color: #252525;
   color: #fff;
   appearance: none;
+  overflow-x: auto;
 }
 
 #contentDisplay select option:checked {
