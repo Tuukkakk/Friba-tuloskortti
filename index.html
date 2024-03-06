@@ -61,7 +61,7 @@
       });
     </script>
 
-    <!-- scripts that handle fetching players for selection--------------------------------------------------------------------------->
+    <!-- scripts that handle fetching players for selection-->
     <script type="module">
       import { playerArr } from "./main.js";
 
@@ -69,13 +69,11 @@
       var parsedArr = JSON.parse(retrievedArr);
       console.log("Haetut pelaajat:", parsedArr);
 
-      // Luo pelaajien valintaelementit
       parsedArr.forEach((player) => {
         var playerOption = document.createElement("div");
         playerOption.classList.add("player-option");
         playerOption.textContent = player.Name;
         playerOption.addEventListener("click", function () {
-          // Lisää tai poista valinta klikkaamalla pelaajan nimeä
           playerOption.classList.toggle("selected");
         });
 
@@ -90,7 +88,6 @@
     </div>
 
     <script>
-      // Lisää tapahtumankäsittelijä "Valitse pelaajat" -painikkeelle
       document.addEventListener("click", function () {
         var selectedPlayers = [];
         var selectedPlayerOptions = document.querySelectorAll(

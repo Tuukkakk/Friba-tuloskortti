@@ -33,11 +33,11 @@ a {
   background-color: rgb(24, 24, 24);
   justify-content: center;
   display: flex;
-  flex-direction: row; /* Sijoittaa elementit vaakasuoraan riviin */
+  flex-direction: row;
   font-size: clamp(1.25rem, 1.5vw, 2rem);
 }
 .hole p {
-  margin-right: 20px; /* Lisää väliä väylätietojen välille */
+  margin-right: 20px;
   font-size: clamp(1.25rem, 1.5vw, 2rem);
 }
 .nav {
@@ -46,15 +46,15 @@ a {
 }
 .imageDisplay {
   display: flex;
-  justify-content: center; /* Vaakasuuntainen keskitys */
-  align-items: center; /* Pystysuuntainen keskitys */
+  justify-content: center;
+  align-items: center;
   vertical-align: top;
   margin-bottom: 40px;
   margin-top: 40px;
 }
 #courseNameHeader {
-  display: inline-block; /* Tehdään h1-elementistä lohko, jotta se voidaan keskittää */
-  margin: 0 auto; /* Keskitä radan nimi */
+  display: inline-block;
+  margin: 0 auto;
 }
 
 @media all and (min-width: 200px) {
@@ -63,13 +63,13 @@ a {
     text-align: center;
   }
   #courseNameHeader {
-    display: inline-block; /* Tehdään h1-elementistä lohko, jotta se voidaan keskittää */
-    margin: 0 auto; /* Keskitä radan nimi */
+    display: inline-block;
+    margin: 0 auto;
     margin-top: 20px;
     height: 40px;
   }
   #courseInfo {
-    text-align: left; /* Keskitä väylätiedot */
+    text-align: left;
   }
   .nav__links {
     justify-content: center;
@@ -87,6 +87,7 @@ a {
     vertical-align: top;
     margin-bottom: 40px;
     margin-top: 40px;
+    padding-left: 20px;
   }
   .head {
     order: 0;
@@ -102,6 +103,8 @@ a {
 #navigation {
   display: flex;
   justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 #navigation button {
   display: inline-block;
@@ -122,6 +125,7 @@ a {
   font-weight: bold;
   width: 150px;
   margin-bottom: 10px;
+  margin-left: 20px;
 }
 
 #cancelRoundButton,
@@ -159,6 +163,8 @@ a {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .player-name {
   flex-grow: 1;
@@ -174,11 +180,11 @@ a {
 /* Styles for tables */
 table {
   border-collapse: collapse;
-  width: 100%; /* Set width to 100% */
-  max-width: 100%; /* Limit maximum width to 100% of the container */
+  width: 100%;
+  max-width: 100%;
   margin-bottom: 20px;
   margin-top: 20px;
-  box-sizing: border-box; /* Include padding and border in width and height */
+  box-sizing: border-box;
 }
 
 th,
@@ -187,14 +193,14 @@ td {
   text-align: center;
   padding: 8px;
   font-size: clamp(0.75rem, 1.5vw, 2rem);
-  box-sizing: border-box; /* Include padding and border in width and height */
+  box-sizing: border-box;
 }
 
 /* Styles for tables */
 table {
   border-collapse: collapse;
-  width: auto; /* Set width to auto */
-  max-width: 100%; /* Limit maximum width to 100% of the container */
+  width: auto;
+  max-width: 100%;
   margin-bottom: 20px;
   margin-top: 20px;
 }
@@ -211,8 +217,8 @@ td {
 @media screen and (max-width: 600px) {
   th,
   td {
-    font-size: 12px; /* Decrease font size for smaller screens */
-    padding: 6px; /* Adjust padding for smaller screens */
+    font-size: 12px;
+    padding: 6px;
     font-size: clamp(0.75rem, 1.5vw, 2rem);
   }
 }

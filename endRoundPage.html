@@ -22,7 +22,7 @@
     <script>
       $(document).ready(function () {
         $("#returnButton").click(function () {
-          window.location.href = "index.html";
+          window.location.href = "startRound.html";
         });
       });
     </script>
@@ -32,7 +32,7 @@
       <ul class="nav__links">
         <li class="head"><h1>Friba tuloskortti</h1></li>
         <li class="item">
-          <a href="index.html" id="startRound">Aloita kierros</a>
+          <a href="startRound.html" id="startRound">Aloita kierros</a>
         </li>
         <li class="item">
           <a href="savedRounds.html" id="savedRounds">Tallennetut kierrokset</a>
@@ -46,7 +46,6 @@
     <div class="scoreText"></div>
     <div class="endRoundScores">
       <div id="playerScores"></div>
-      <!-- Display player scores here -->
       <ul></ul>
     </div>
 
@@ -70,13 +69,13 @@
 
         // Loop through players and display their total scores
         players.forEach(function (player, index) {
-          var totalScore = totalScores[index] - coursePar; // Laske pelaajan kokonaistulos vähentämällä coursePar
-          var scoreDifference = ""; // Alustetaan muuttuja, johon lisätään "+" merkki tarvittaessa
+          var totalScore = totalScores[index] - coursePar;
+          var scoreDifference = "";
           if (totalScore >= 0) {
-            scoreDifference = "+"; // Lisätään "+" merkki positiivisille tuloksille
+            scoreDifference = "+";
           }
           var playerScoreDiv = document.createElement("div");
-          playerScoreDiv.classList.add("player-score"); // Lisää luokka "player-score"
+          playerScoreDiv.classList.add("player-score");
           playerScoreDiv.innerHTML = `
     <span class="player-name">${player}</span>
     <span class="score">${scoreDifference}${totalScore} (${totalScores[index]}) pistettä</span>
@@ -89,9 +88,9 @@
       displayPlayerScores();
     </script>
     <script>
-      // Retrieve players and totalScores from local storage
+      // Retrieve players and scoresPerHole from local storage
       var players = JSON.parse(localStorage.getItem("players"));
-      var totalScores = JSON.parse(localStorage.getItem("totalScores"));
+      var scoresPerHole = JSON.parse(localStorage.getItem("scoresPerHole"));
 
       // Function to generate the scores grid
       function generateScoresGrid() {
@@ -137,9 +136,10 @@
 
           // Fill in scores for each hole
           for (var i = startHole; i <= endHole; i++) {
-            // Here, you need to retrieve the individual scores per hole
-            // and fill in the table accordingly
-            var score = 0; // Change this line to get the actual score from your data
+            // Retrieve the individual scores per hole for each player
+            var holeIndex = i - 1; // Array index starts from 0
+            var score =
+              scoresPerHole[holeIndex].scores[players.indexOf(player)];
             var td = document.createElement("td");
             td.textContent = score;
             playerRow.appendChild(td);
