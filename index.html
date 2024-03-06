@@ -65,52 +65,48 @@
     <script type="module">
       import { playerArr } from "./main.js";
 
-      document.addEventListener("DOMContentLoaded", function () {
-        var retrievedArr = localStorage.getItem("playerArr");
-        var parsedArr = JSON.parse(retrievedArr);
-        console.log(parsedArr);
-        var contentDisplay = document.getElementById("contentDisplay");
+      var retrievedArr = localStorage.getItem("playerArr");
+      var parsedArr = JSON.parse(retrievedArr);
+      console.log("Haetut pelaajat:", parsedArr);
 
-        var select = document.createElement("select");
-        select.setAttribute("multiple", true);
+      // Luo valintaruudut pelaajille
+      parsedArr.forEach((player) => {
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = player.Name;
+        checkbox.id = player.Name;
+        checkbox.name = "selected-players";
 
-        // Add mousedown event listener to the select element
-        select.addEventListener("mousedown", function (e) {
-          e.preventDefault();
+        var label = document.createElement("label");
+        label.htmlFor = player.Name;
+        label.appendChild(document.createTextNode(player.Name));
 
-          // Get the original scroll position
-          var originalScrollTop = this.scrollTop;
-
-          // Get the clicked option
-          var option = e.target;
-
-          // Toggle the selection of the clicked option
-          option.selected = !option.selected;
-
-          // Keep the original scroll position
-          var self = this;
-          setTimeout(function () {
-            self.scrollTop = originalScrollTop;
-          }, 0);
-        });
-
-        parsedArr.forEach((item) => {
-          var option = document.createElement("option");
-          if (typeof item === "object") {
-            option.textContent = item.Name;
-          } else {
-            option.textContent = item;
-          }
-          select.appendChild(option);
-        });
-        contentDisplay.appendChild(select);
+        var container = document.getElementById("players-container");
+        container.appendChild(checkbox);
+        container.appendChild(label);
+        container.appendChild(document.createElement("br"));
       });
     </script>
 
-    <div class="playerSelectionBox">
-      <p class="contentForPlayerSel">Valitse pelaajat kierrokselle</p>
-      <div id="contentDisplay"></div>
-    </div>
+    <h2>Valitse pelaajat:</h2>
+    <div id="players-container"></div>
+    <button id="select-players-button">Valitse pelaajat</button>
+
+    <script>
+      // Lisää tapahtumankäsittelijä "Valitse pelaajat" -painikkeelle
+      document
+        .getElementById("select-players-button")
+        .addEventListener("click", function () {
+          var selectedPlayers = [];
+          var checkboxes = document.querySelectorAll(
+            'input[name="selected-players"]:checked'
+          );
+          checkboxes.forEach((checkbox) => {
+            selectedPlayers.push(checkbox.value);
+          });
+          console.log("Valitut pelaajat:", selectedPlayers);
+        });
+    </script>
 
     <div class="startRoundButton">
       <button onclick="openPlayRoundHtml()">Aloita kierros</button>
