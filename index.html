@@ -67,11 +67,11 @@
 
       document.addEventListener("DOMContentLoaded", function () {
         var retrievedArr = localStorage.getItem("playerArr");
-        const parsedArr = JSON.parse(retrievedArr);
+        var parsedArr = JSON.parse(retrievedArr);
         console.log(parsedArr);
-        const contentDisplay = document.getElementById("contentDisplay");
+        var contentDisplay = document.getElementById("contentDisplay");
 
-        const select = document.createElement("select");
+        var select = document.createElement("select");
         select.setAttribute("multiple", true);
 
         // Add mousedown event listener to the select element
@@ -95,7 +95,7 @@
         });
 
         parsedArr.forEach((item) => {
-          const option = document.createElement("option");
+          var option = document.createElement("option");
           if (typeof item === "object") {
             option.textContent = item.Name;
           } else {
