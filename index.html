@@ -88,26 +88,25 @@
       <h2 class="selPlayersHead">Valitse pelaajat:</h2>
       <div id="players-container"></div>
     </div>
-    <button id="select-players-button">Valitse pelaajat</button>
 
     <script>
       // Lisää tapahtumankäsittelijä "Valitse pelaajat" -painikkeelle
-      document
-        .getElementById("select-players-button")
-        .addEventListener("click", function () {
-          var selectedPlayers = [];
-          var selectedPlayerOptions = document.querySelectorAll(
-            ".player-option.selected"
-          );
-          selectedPlayerOptions.forEach((playerOption) => {
-            selectedPlayers.push(playerOption.textContent);
-          });
-          console.log("Valitut pelaajat:", selectedPlayers);
+      document.addEventListener("click", function () {
+        var selectedPlayers = [];
+        var selectedPlayerOptions = document.querySelectorAll(
+          ".player-option.selected"
+        );
+        selectedPlayerOptions.forEach((playerOption) => {
+          selectedPlayers.push(playerOption.textContent);
         });
+        console.log("Valitut pelaajat:", selectedPlayers);
+      });
     </script>
 
     <div class="startRoundButton">
-      <button onclick="openPlayRoundHtml()">Aloita kierros</button>
+      <button id="start-btn" onclick="openPlayRoundHtml()">
+        Aloita kierros
+      </button>
 
       <script>
         function openPlayRoundHtml() {
@@ -116,9 +115,9 @@
 
           // Get the selected players' names
           var selectedPlayers = [];
-          var selectedOptions = document
-            .getElementById("contentDisplay")
-            .querySelectorAll("option:checked");
+          var selectedOptions = document.querySelectorAll(
+            ".player-option.selected"
+          );
           selectedOptions.forEach((option) => {
             selectedPlayers.push(option.textContent);
           });
@@ -132,7 +131,6 @@
             alert("Valitse edes yksi pelaaja aloittaaksesi kierroksen.");
             return; // Prevent further execution
           }
-
           // Redirect to playRound.html with parameters
           window.location.href =
             "./playRound.html?course=" +
