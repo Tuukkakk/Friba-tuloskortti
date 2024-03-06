@@ -71,25 +71,27 @@
 
       // Luo valintaruudut pelaajille
       parsedArr.forEach((player) => {
-        var checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.value = player.Name;
-        checkbox.id = player.Name;
-        checkbox.name = "selected-players";
-
-        var label = document.createElement("label");
-        label.htmlFor = player.Name;
-        label.appendChild(document.createTextNode(player.Name));
+        var playerOption = document.createElement("div");
+        playerOption.classList.add("player-option");
+        playerOption.textContent = player.Name;
+        playerOption.addEventListener("click", function () {
+          // Lisää tai poista valinta klikkaamalla pelaajan nimeä
+          if (playerOption.classList.contains("selected")) {
+            playerOption.classList.remove("selected");
+          } else {
+            playerOption.classList.add("selected");
+          }
+        });
 
         var container = document.getElementById("players-container");
-        container.appendChild(checkbox);
-        container.appendChild(label);
-        container.appendChild(document.createElement("br"));
+        container.appendChild(playerOption);
       });
     </script>
 
-    <h2>Valitse pelaajat:</h2>
-    <div id="players-container"></div>
+    <div id="players-selection-container">
+      <h2 class="selPlayersHead">Valitse pelaajat:</h2>
+      <div id="players-container"></div>
+    </div>
     <button id="select-players-button">Valitse pelaajat</button>
 
     <script>
