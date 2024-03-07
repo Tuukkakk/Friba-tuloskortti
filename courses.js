@@ -34,127 +34,91 @@ courses.forEach((course) => {
         number: 1,
         meters: 153,
         par: 4,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-1-opaste-2015.jpg",
       });
       course.holes.push({
         number: 2,
         meters: 167,
         par: 4,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-2-opaste-2015.jpg",
       });
       course.holes.push({
         number: 3,
         meters: 153,
         par: 4,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-3-opaste-2015.jpg",
       });
       course.holes.push({
         number: 4,
         meters: 111,
         par: 3,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-4-opaste-2015.jpg",
       });
       course.holes.push({
         number: 5,
         meters: 87,
         par: 3,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-5-opaste-2015.jpg",
       });
       course.holes.push({
         number: 6,
         meters: 96,
         par: 3,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-6-opaste-2015.jpg",
       });
       course.holes.push({
         number: 7,
         meters: 148,
         par: 4,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-7-opaste-2015.jpg",
       });
       course.holes.push({
         number: 8,
         meters: 82,
         par: 3,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-8-opaste-2015.jpg",
       });
       course.holes.push({
         number: 9,
         meters: 91,
         par: 3,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-9-opaste-2015.jpg",
       });
       course.holes.push({
         number: 10,
         meters: 88,
         par: 3,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-10-opaste-2015.jpg",
       });
       course.holes.push({
         number: 11,
         meters: 66,
         par: 3,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-11-opaste-2015.jpg",
       });
       course.holes.push({
         number: 12,
         meters: 79,
         par: 3,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-12-opaste-2015.jpg",
       });
       course.holes.push({
         number: 13,
         meters: 72,
         par: 3,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-13-opaste-2015.jpg",
       });
       course.holes.push({
         number: 14,
         meters: 121,
         par: 4,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-14-opaste-2015.jpg",
       });
       course.holes.push({
         number: 15,
         meters: 77,
         par: 3,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-15-opaste-2015.jpg",
       });
       course.holes.push({
         number: 16,
         meters: 85,
         par: 3,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-16-opaste-2015.jpg",
       });
       course.holes.push({
         number: 17,
         meters: 80,
         par: 3,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-17-opaste-2015.jpg",
       });
       course.holes.push({
         number: 18,
         meters: 146,
         par: 4,
-        imgLink:
-          "https://frisbeegolfradat.fi/files/2015/08/utra-18-opaste-2015.jpg",
       });
       break;
     //Add holes for lyky-blue
