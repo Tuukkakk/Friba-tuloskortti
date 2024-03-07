@@ -146,24 +146,24 @@ courses.forEach((course) => {
       break;
     //Add holes for lyky-gold
     case "Lykynlammen frisbeegolfrata-Gold":
-      course.holes.push({ number: 1, meters: 101, par: 3 });
-      course.holes.push({ number: 2, meters: 95, par: 4 });
-      course.holes.push({ number: 3, meters: 132, par: 4 });
-      course.holes.push({ number: 4, meters: 104, par: 3 });
-      course.holes.push({ number: 5, meters: 132, par: 3 });
-      course.holes.push({ number: 6, meters: 120, par: 4 });
-      course.holes.push({ number: 7, meters: 50, par: 4 });
-      course.holes.push({ number: 8, meters: 79, par: 3 });
-      course.holes.push({ number: 9, meters: 205, par: 4 });
-      course.holes.push({ number: 10, meters: 93, par: 4 });
-      course.holes.push({ number: 11, meters: 187, par: 3 });
-      course.holes.push({ number: 12, meters: 156, par: 3 });
-      course.holes.push({ number: 13, meters: 128, par: 3 });
-      course.holes.push({ number: 14, meters: 82, par: 5 });
-      course.holes.push({ number: 15, meters: 83, par: 3 });
-      course.holes.push({ number: 16, meters: 323, par: 4 });
-      course.holes.push({ number: 17, meters: 77, par: 4 });
-      course.holes.push({ number: 18, meters: 217, par: 3 });
+      course.holes.push({ number: 1, meters: 126, par: 3 });
+      course.holes.push({ number: 2, meters: 150, par: 4 });
+      course.holes.push({ number: 3, meters: 142, par: 4 });
+      course.holes.push({ number: 4, meters: 128, par: 3 });
+      course.holes.push({ number: 5, meters: 140, par: 3 });
+      course.holes.push({ number: 6, meters: 180, par: 4 });
+      course.holes.push({ number: 7, meters: 230, par: 4 });
+      course.holes.push({ number: 8, meters: 115, par: 3 });
+      course.holes.push({ number: 9, meters: 187, par: 4 });
+      course.holes.push({ number: 10, meters: 185, par: 4 });
+      course.holes.push({ number: 11, meters: 128, par: 3 });
+      course.holes.push({ number: 12, meters: 109, par: 3 });
+      course.holes.push({ number: 13, meters: 83, par: 3 });
+      course.holes.push({ number: 14, meters: 376, par: 5 });
+      course.holes.push({ number: 15, meters: 77, par: 3 });
+      course.holes.push({ number: 16, meters: 249, par: 4 });
+      course.holes.push({ number: 17, meters: 178, par: 4 });
+      course.holes.push({ number: 18, meters: 121, par: 3 });
       break;
     //Add holes for kontioranta
     case "Kontiorannan frisbeegolfrata":
