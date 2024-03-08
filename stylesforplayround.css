@@ -221,4 +221,16 @@ td {
     padding: 6px;
     font-size: clamp(0.75rem, 1.5vw, 2rem);
   }
+  #courseNameHeader {
+    display: inline-block;
+    margin: 0 auto;
+    margin-top: 20px;
+    height: 40px;
+    padding-bottom: 70px;
+  }
+}
+@media screen and (max-width: 450px) {
+  #courseNameHeader {
+    padding-bottom: 70px;
+  }
 }
