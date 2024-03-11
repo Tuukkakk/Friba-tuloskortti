@@ -56,7 +56,7 @@ courses.forEach((course) => {
         meters: 111,
         par: 3,
         imgLink:
-          "https://www.joenliitokiekko.com/wp-content/uploads/2012/05/vayla-4_w.jpg",
+          "https://www.joenliitokiekko.com/wp-content/uploads/2012/05/vayla-4_2.jpg",
       });
       course.holes.push({
         number: 5,
@@ -84,35 +84,35 @@ courses.forEach((course) => {
         meters: 82,
         par: 3,
         imgLink:
-          "https://www.joenliitokiekko.com/wp-content/uploads/2012/05/vayla-8_w.jpg",
+          "https://www.joenliitokiekko.com/wp-content/uploads/2014/05/vayla-8_w.jpg",
       });
       course.holes.push({
         number: 9,
         meters: 91,
         par: 3,
         imgLink:
-          "https://www.joenliitokiekko.com/wp-content/uploads/2012/05/vayla-9_w.jpg",
+          "https://www.joenliitokiekko.com/wp-content/uploads/2014/05/vayla-9_w.jpg",
       });
       course.holes.push({
         number: 10,
         meters: 88,
         par: 3,
         imgLink:
-          "https://www.joenliitokiekko.com/wp-content/uploads/2012/05/vayla-10_w.jpg",
+          "https://www.joenliitokiekko.com/wp-content/uploads/2022/04/utra_vayla_10_2022.jpg",
       });
       course.holes.push({
         number: 11,
         meters: 66,
         par: 3,
         imgLink:
-          "https://www.joenliitokiekko.com/wp-content/uploads/2012/05/vayla-11_w.jpg",
+          "https://www.joenliitokiekko.com/wp-content/uploads/2022/04/utra_vayla_11_2022.jpg",
       });
       course.holes.push({
         number: 12,
         meters: 79,
         par: 3,
         imgLink:
-          "https://www.joenliitokiekko.com/wp-content/uploads/2012/05/vayla-12_w.jpg",
+          "https://www.joenliitokiekko.com/wp-content/uploads/2014/05/vayla-12_w.jpg",
       });
       course.holes.push({
         number: 13,
@@ -133,14 +133,14 @@ courses.forEach((course) => {
         meters: 77,
         par: 3,
         imgLink:
-          "https://www.joenliitokiekko.com/wp-content/uploads/2012/05/vayla-15_w.jpg",
+          "https://www.joenliitokiekko.com/wp-content/uploads/2015/07/vayla-15_w.jpg",
       });
       course.holes.push({
         number: 16,
         meters: 85,
         par: 3,
         imgLink:
-          "https://www.joenliitokiekko.com/wp-content/uploads/2012/05/vayla-16_w.jpg",
+          "https://www.joenliitokiekko.com/wp-content/uploads/2014/05/vayla-16_w.jpg",
       });
       course.holes.push({
         number: 17,
